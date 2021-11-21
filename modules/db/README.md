@@ -1,0 +1,1 @@
+This module provisions DB instances in private subnets with proper security groups.
