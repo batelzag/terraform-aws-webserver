@@ -7,9 +7,9 @@ data "terraform_remote_state" "webserver_vpc" {
 	config = {
 		organization = "Batel-OpsSchool1"
 		workspaces = {
-      		name = "Network"
+      			name = "Network"
 		}
-    }
+	}
 }
 module "webserver_web" {
   	source  = "app.terraform.io/Batel-OpsSchool1/webserver/aws//modules/web"
