@@ -11,7 +11,7 @@ provider "aws" {
 terraform {
   	backend "remote" {
 		hostname = "app.terraform.io"
-		organization = "Batel-OpsSchool"
+		organization = "Batel-OpsSchool1"
 		workspace {
 			name = "Servers"
 		}
