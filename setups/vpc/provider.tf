@@ -1,17 +1,20 @@
+# Sets AWS provider configuration
 provider "aws" {
 	region  = "us-east-1"
 	default_tags {
 		tags = {
-			Enviroment = var.enviroment_tag
-			Owner = var.owner_tag
-			Project = var.project_tag
+			Enviroment 	= var.environment_tag
+			Owner 		= var.owner_tag
+			Project 	= var.project_tag
 		}
 	}
 }
+
+# Sets reomte state on TFC
 terraform {
   	backend "remote" {
-		hostname = "app.terraform.io"
-		organization = "Batel-OpsSchool1"
+		hostname 		= "app.terraform.io"
+		organization 	= "Batel-OpsSchool1"
 		workspace {
 			name = "Servers"
 		}
