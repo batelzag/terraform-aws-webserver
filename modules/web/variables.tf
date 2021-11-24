@@ -47,10 +47,10 @@ variable  "vpc_id" {
   type = string
 }
 
-# The public subnets for instances to be assigned
-variable "public_subnets" {
-  type = list(string)
-}
+# # The public subnets for instances to be assigned
+# variable "public_subnets" {
+#   type = list(string)
+# }
 
 # The S3 bucket name for upload nginx access logs
 variable "bucket_name" {

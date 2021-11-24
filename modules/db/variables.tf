@@ -29,9 +29,9 @@ variable  "vpc_id" {
 }
 
 # The vpc cidr
-variable "vpc_cidr" {
-    type = string
-}
+# variable "vpc_cidr" {
+#     type = string
+# }
 
 # The private subnets for instances to be assigned
 variable "private_subnets" {
