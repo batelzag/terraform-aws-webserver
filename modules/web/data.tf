@@ -1,4 +1,4 @@
-# Retrieves Info about the latest ubuntu version
+# Retrieves info about the latest ubuntu version
 data "aws_ami" "ubuntu-18" {
     most_recent = true
     owners = ["099720109477"]

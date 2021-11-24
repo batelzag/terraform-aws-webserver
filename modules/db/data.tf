@@ -1,17 +1,22 @@
-# Retrieves Info about the latest ubuntu version
+# Retrieves info about the latest ubuntu version
 data "aws_ami" "ubuntu-18" {
     most_recent = true
-    owners = ["099720109477"]
+    owners      = ["099720109477"]
     filter {
-        name = "name"
-        values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
+        name    = "name"
+        values  = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
     }
     filter {
-        name   = "root-device-type"
-        values = ["ebs"]
+        name    = "root-device-type"
+        values  = ["ebs"]
     }
     filter {
-        name   = "virtualization-type"
-        values = ["hvm"]
+        name    = "virtualization-type"
+        values  = ["hvm"]
     }
+}
+
+# Retrieves info about the related VPC
+data "aws_vpc" "whiskey-vpc" {
+  id = var.vpc_id
 }

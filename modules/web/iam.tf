@@ -1,7 +1,7 @@
 # Creates new role for ec2-s3-write access
 resource "aws_iam_role" "ec2-s3-write-role" {
-  name = "ec2-s3-write-role"
-  description = "ec2 role to upload access logs to s3 bucket"
+  name               = "ec2-s3-write-role"
+  description        = "ec2 role to upload access logs to s3 bucket"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -21,17 +21,18 @@ resource "aws_iam_role" "ec2-s3-write-role" {
     tag-key = "tag-value"
   }
 }
-# Creates ec2 profile - to link IAM role
+# Creates EC2 profile - to link IAM role
 resource "aws_iam_instance_profile" "ec2-s3-write-profile" {
   name = "ec2-s3-write-profile"
   role = aws_iam_role.ec2-s3-write-role.name
 }
-# Adds IAM policy which allows ec2 instance to access s3 bucket with write permissions
-resource "aws_iam_role_policy" "ec2-s3-write-policy" {
-  name = "ec2-s3-write-policy"
-  role = aws_iam_role.ec2-s3-write-role.id
 
-  policy = jsonencode({
+# Adds IAM policy which allows EC2 instance to access S3 bucket with write permissions
+resource "aws_iam_role_policy" "ec2-s3-write-policy" {
+  name    = "ec2-s3-write-policy"
+  role    = aws_iam_role.ec2-s3-write-role.id
+
+  policy  = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -46,4 +47,3 @@ resource "aws_iam_role_policy" "ec2-s3-write-policy" {
     ]
   })
 }
-

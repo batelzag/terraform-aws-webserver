@@ -1,4 +1,4 @@
-# Launch WEB server instances
+# Launch WEB instances
 resource "aws_instance" "web" {
   count                       = var.web_instance_count
   ami                         = data.aws_ami.ubuntu-18.id
@@ -7,7 +7,7 @@ resource "aws_instance" "web" {
   subnet_id                   = element(var.public_subnets,count.index)
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.web-instances-sg.id]
-  iam_instance_profile = aws_iam_instance_profile.ec2-s3-write-profile.name
+  iam_instance_profile        = aws_iam_instance_profile.ec2-s3-write-profile.name
   user_data                   = local.web-instance-userdata
   
   root_block_device {
@@ -28,8 +28,7 @@ resource "aws_instance" "web" {
   }
 }
 
-# Create a security group assigned to ELB and WEB instances to allow
-# ingress ssh and http traffic, and egress all destinations
+# Create a security group assigned to ELB and WEB instances
 resource "aws_security_group" "web-instances-sg" {
   name    = "web-instances-sg"
   vpc_id  = var.vpc_id
@@ -37,6 +36,8 @@ resource "aws_security_group" "web-instances-sg" {
     Name = "web-instances-sg"
   }
 }
+
+# Create secrutiy groups rules to allow ingress traffic with ssh and http, and egress from all destinations
 resource "aws_security_group_rule" "web-ssh-ing" {
   type              = "ingress"
   description       = "allow ssh access from anywhere"
@@ -46,6 +47,7 @@ resource "aws_security_group_rule" "web-ssh-ing" {
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.web-instances-sg.id
 }
+
 resource "aws_security_group_rule" "web-http-ing" {
   type              = "ingress"
   description       = "allow http access from anywhere"
@@ -55,6 +57,7 @@ resource "aws_security_group_rule" "web-http-ing" {
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.web-instances-sg.id
 }
+
 resource "aws_security_group_rule" "web-egr-all" {
   type              = "egress"
   description       = "allow outbound traffic to anywhere"

@@ -1,3 +1,4 @@
+# The bash script that will run on launch of the WEB instances
 locals {
   web-instance-userdata = <<USERDATA
 #!/bin/bash
