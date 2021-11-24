@@ -88,6 +88,10 @@ resource "aws_route" "private-nat" {
   route_table_id         = "${element(aws_route_table.private-rt.*.id,count.index)}"
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = "${element(aws_nat_gateway.nat-gw.*.id,count.index)}"
+  timeouts {
+    create = "5m"
+    delete = "5m"
+  }
 }
 resource "aws_route_table_association" "rta-public" {
   count          = length(var.public_cidr)
