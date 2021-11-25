@@ -109,7 +109,7 @@ resource "tfe_variable" "aws_key2" {
 #   enabled          = true
 #   destination_type = "slack"
 #   triggers         = ["run:completed"]
-#   url              = "https://hooks.slack.com/services/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"
+#   url              = ""
 #   workspace_id     = tfe_workspace.source-workspace.id
 # }
 
