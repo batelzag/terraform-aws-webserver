@@ -103,25 +103,25 @@ resource "tfe_variable" "aws_key2" {
   sensitive    = true
 }
 
-# # Sends notifications regarding actions on Network workspace to slack webhook
-# resource "tfe_notification_configuration" "source-ws-slack" {
-#   name             = "Batel-Network-TFC"
-#   enabled          = true
-#   destination_type = "slack"
-#   triggers         = ["run:completed"]
-#   url              = ""
-#   workspace_id     = tfe_workspace.source-workspace.id
-# }
+# Sends notifications regarding actions on Network workspace to slack webhook
+resource "tfe_notification_configuration" "source-ws-slack" {
+  name             = "Batel-Network-TFC"
+  enabled          = true
+  destination_type = "slack"
+  triggers         = ["run:completed"]
+  url              = ""
+  workspace_id     = tfe_workspace.source-workspace.id
+}
 
-# # Sends notifications regarding actions on Servers workspace to slack webhook
-# resource "tfe_notification_configuration" "trrigered-ws-slack" {
-#   name             = "Batel-Servers-TFC"
-#   enabled          = true
-#   destination_type = "slack"
-#   triggers         = ["run:completed"]
-#   url              = ""
-#   workspace_id     = tfe_workspace.trrigered-workspace.id
-# }
+# Sends notifications regarding actions on Servers workspace to slack webhook
+resource "tfe_notification_configuration" "trrigered-ws-slack" {
+  name             = "Batel-Servers-TFC"
+  enabled          = true
+  destination_type = "slack"
+  triggers         = ["run:completed"]
+  url              = ""
+  workspace_id     = tfe_workspace.trrigered-workspace.id
+}
 
 # Creates a run trigger - execute the Servers workspace automaticaly after apply in the Network workspace
 resource "tfe_run_trigger" "source-to-trrigered" {
